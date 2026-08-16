@@ -3,6 +3,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { navItems } from "@/data/navigation";
 import { cn } from "@/lib/utils";
+import { NexusIcon } from "@/components/nexus/icons";
 
 export function Navigation() {
   const [open, setOpen] = useState(false);
@@ -109,7 +110,7 @@ export function Navigation() {
                     activeOptions={{ exact: item.to === "/" }}
                   >
                     <span className="grid size-9 shrink-0 place-items-center rounded-lg border border-border bg-surface/60 text-sm">
-                      {item.glyph}
+                      <NexusIcon name={item.icon} className="size-4 text-primary" />
                     </span>
                     <span className="min-w-0">
                       <span className="block font-display text-sm font-medium">{item.label}</span>

@@ -4,6 +4,7 @@ import { Scene } from "@/components/three/Scene";
 import { classInfo, classStats } from "@/data/classInfo";
 import { campusLocations } from "@/data/navigation";
 import { GlassPanel, StatCounter } from "@/components/nexus/primitives";
+import { NexusIcon } from "@/components/nexus/icons";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -109,7 +110,7 @@ function Index() {
             <Link key={loc.to} to={loc.to} className="group">
               <GlassPanel hover className="flex h-full items-center gap-3 p-4">
                 <span className="grid size-10 shrink-0 place-items-center rounded-xl border border-border bg-surface/60 text-base">
-                  {loc.glyph}
+                  <NexusIcon name={loc.icon} className="size-5 text-primary" />
                 </span>
                 <span className="min-w-0">
                   <span className="block truncate font-display text-sm font-medium group-hover:text-primary">
