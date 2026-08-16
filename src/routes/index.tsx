@@ -4,6 +4,7 @@ import { Scene } from "@/components/three/Scene";
 import { classInfo, classStats } from "@/data/classInfo";
 import { campusLocations } from "@/data/navigation";
 import { GlassPanel, StatCounter } from "@/components/nexus/primitives";
+import { NexusIcon } from "@/components/nexus/icons";
 
 export const Route = createFileRoute("/")({
   head: () => ({
