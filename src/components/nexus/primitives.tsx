@@ -7,10 +7,10 @@ export function GlassPanel({
   hover = false,
   style,
 }: {
-  className?: string;
+  className?: string | undefined;
   children: ReactNode;
-  hover?: boolean;
-  style?: React.CSSProperties;
+  hover?: boolean | undefined;
+  style?: React.CSSProperties | undefined;
 }) {
   return (
     <div
@@ -51,9 +51,9 @@ export function SectionHero({
 }: {
   eyebrow: string;
   title: string;
-  subtitle?: string;
-  description?: string;
-  accent?: string;
+  subtitle?: string | undefined;
+  description?: string | undefined;
+  accent?: string | undefined;
 }) {
   return (
     <header className="relative mx-auto max-w-5xl px-6 pb-10 pt-28 text-center sm:pt-32">
@@ -94,10 +94,10 @@ export function Section({
   children,
   className,
 }: {
-  title?: string;
-  hint?: string;
+  title?: string | undefined;
+  hint?: string | undefined;
   children: ReactNode;
-  className?: string;
+  className?: string | undefined;
 }) {
   return (
     <section className={cn("mx-auto w-full max-w-6xl px-6 py-10", className)}>
@@ -123,8 +123,8 @@ export function PhotoSlot({
 }: {
   src: string | null;
   alt: string;
-  className?: string;
-  accent?: string;
+  className?: string | undefined;
+  accent?: string | undefined;
 }) {
   if (src) {
     return (
@@ -169,7 +169,7 @@ export function StatCounter({
 }: {
   value: number;
   label: string;
-  delay?: number;
+  delay?: number | undefined;
 }) {
   const [display, setDisplay] = useState(0);
   const ref = useRef<HTMLDivElement>(null);

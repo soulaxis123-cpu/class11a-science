@@ -10,33 +10,206 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as AchievementsRouteImport } from './routes/achievements'
+import { Route as ClassRouteImport } from './routes/class'
+import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as GreenCabinetRouteImport } from './routes/green-cabinet'
+import { Route as MonitorsRouteImport } from './routes/monitors'
+import { Route as ProjectsRouteImport } from './routes/projects'
+import { Route as TeacherRouteImport } from './routes/teacher'
+import { Route as TimelineRouteImport } from './routes/timeline'
+import { Route as HousesIndexRouteImport } from './routes/houses.index'
+import { Route as HousesHouseRouteImport } from './routes/houses.$house'
+import { Route as StudentsIndexRouteImport } from './routes/students.index'
+import { Route as StudentsRollRouteImport } from './routes/students.$roll'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AchievementsRoute = AchievementsRouteImport.update({
+  id: '/achievements',
+  path: '/achievements',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClassRoute = ClassRouteImport.update({
+  id: '/class',
+  path: '/class',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GalleryRoute = GalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GreenCabinetRoute = GreenCabinetRouteImport.update({
+  id: '/green-cabinet',
+  path: '/green-cabinet',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MonitorsRoute = MonitorsRouteImport.update({
+  id: '/monitors',
+  path: '/monitors',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsRoute = ProjectsRouteImport.update({
+  id: '/projects',
+  path: '/projects',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TeacherRoute = TeacherRouteImport.update({
+  id: '/teacher',
+  path: '/teacher',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TimelineRoute = TimelineRouteImport.update({
+  id: '/timeline',
+  path: '/timeline',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HousesIndexRoute = HousesIndexRouteImport.update({
+  id: '/houses/',
+  path: '/houses/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HousesHouseRoute = HousesHouseRouteImport.update({
+  id: '/houses/$house',
+  path: '/houses/$house',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudentsIndexRoute = StudentsIndexRouteImport.update({
+  id: '/students/',
+  path: '/students/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudentsRollRoute = StudentsRollRouteImport.update({
+  id: '/students/$roll',
+  path: '/students/$roll',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/achievements': typeof AchievementsRoute
+  '/class': typeof ClassRoute
+  '/gallery': typeof GalleryRoute
+  '/green-cabinet': typeof GreenCabinetRoute
+  '/monitors': typeof MonitorsRoute
+  '/projects': typeof ProjectsRoute
+  '/teacher': typeof TeacherRoute
+  '/timeline': typeof TimelineRoute
+  '/houses/$house': typeof HousesHouseRoute
+  '/students/$roll': typeof StudentsRollRoute
+  '/houses/': typeof HousesIndexRoute
+  '/students/': typeof StudentsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/achievements': typeof AchievementsRoute
+  '/class': typeof ClassRoute
+  '/gallery': typeof GalleryRoute
+  '/green-cabinet': typeof GreenCabinetRoute
+  '/monitors': typeof MonitorsRoute
+  '/projects': typeof ProjectsRoute
+  '/teacher': typeof TeacherRoute
+  '/timeline': typeof TimelineRoute
+  '/houses/$house': typeof HousesHouseRoute
+  '/students/$roll': typeof StudentsRollRoute
+  '/houses': typeof HousesIndexRoute
+  '/students': typeof StudentsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/achievements': typeof AchievementsRoute
+  '/class': typeof ClassRoute
+  '/gallery': typeof GalleryRoute
+  '/green-cabinet': typeof GreenCabinetRoute
+  '/monitors': typeof MonitorsRoute
+  '/projects': typeof ProjectsRoute
+  '/teacher': typeof TeacherRoute
+  '/timeline': typeof TimelineRoute
+  '/houses/$house': typeof HousesHouseRoute
+  '/students/$roll': typeof StudentsRollRoute
+  '/houses/': typeof HousesIndexRoute
+  '/students/': typeof StudentsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/achievements'
+    | '/class'
+    | '/gallery'
+    | '/green-cabinet'
+    | '/monitors'
+    | '/projects'
+    | '/teacher'
+    | '/timeline'
+    | '/houses/$house'
+    | '/students/$roll'
+    | '/houses/'
+    | '/students/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/achievements'
+    | '/class'
+    | '/gallery'
+    | '/green-cabinet'
+    | '/monitors'
+    | '/projects'
+    | '/teacher'
+    | '/timeline'
+    | '/houses/$house'
+    | '/students/$roll'
+    | '/houses'
+    | '/students'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/achievements'
+    | '/class'
+    | '/gallery'
+    | '/green-cabinet'
+    | '/monitors'
+    | '/projects'
+    | '/teacher'
+    | '/timeline'
+    | '/houses/$house'
+    | '/students/$roll'
+    | '/houses/'
+    | '/students/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  AchievementsRoute: typeof AchievementsRoute
+  ClassRoute: typeof ClassRoute
+  GalleryRoute: typeof GalleryRoute
+  GreenCabinetRoute: typeof GreenCabinetRoute
+  MonitorsRoute: typeof MonitorsRoute
+  ProjectsRoute: typeof ProjectsRoute
+  TeacherRoute: typeof TeacherRoute
+  TimelineRoute: typeof TimelineRoute
+  HousesHouseRoute: typeof HousesHouseRoute
+  StudentsRollRoute: typeof StudentsRollRoute
+  HousesIndexRoute: typeof HousesIndexRoute
+  StudentsIndexRoute: typeof StudentsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +221,115 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/achievements': {
+      id: '/achievements'
+      path: '/achievements'
+      fullPath: '/achievements'
+      preLoaderRoute: typeof AchievementsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/class': {
+      id: '/class'
+      path: '/class'
+      fullPath: '/class'
+      preLoaderRoute: typeof ClassRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gallery': {
+      id: '/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof GalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/green-cabinet': {
+      id: '/green-cabinet'
+      path: '/green-cabinet'
+      fullPath: '/green-cabinet'
+      preLoaderRoute: typeof GreenCabinetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/monitors': {
+      id: '/monitors'
+      path: '/monitors'
+      fullPath: '/monitors'
+      preLoaderRoute: typeof MonitorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects': {
+      id: '/projects'
+      path: '/projects'
+      fullPath: '/projects'
+      preLoaderRoute: typeof ProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/teacher': {
+      id: '/teacher'
+      path: '/teacher'
+      fullPath: '/teacher'
+      preLoaderRoute: typeof TeacherRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/timeline': {
+      id: '/timeline'
+      path: '/timeline'
+      fullPath: '/timeline'
+      preLoaderRoute: typeof TimelineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/houses/': {
+      id: '/houses/'
+      path: '/houses'
+      fullPath: '/houses/'
+      preLoaderRoute: typeof HousesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/houses/$house': {
+      id: '/houses/$house'
+      path: '/houses/$house'
+      fullPath: '/houses/$house'
+      preLoaderRoute: typeof HousesHouseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/students/': {
+      id: '/students/'
+      path: '/students'
+      fullPath: '/students/'
+      preLoaderRoute: typeof StudentsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/students/$roll': {
+      id: '/students/$roll'
+      path: '/students/$roll'
+      fullPath: '/students/$roll'
+      preLoaderRoute: typeof StudentsRollRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  AchievementsRoute: AchievementsRoute,
+  ClassRoute: ClassRoute,
+  GalleryRoute: GalleryRoute,
+  GreenCabinetRoute: GreenCabinetRoute,
+  MonitorsRoute: MonitorsRoute,
+  ProjectsRoute: ProjectsRoute,
+  TeacherRoute: TeacherRoute,
+  TimelineRoute: TimelineRoute,
+  HousesHouseRoute: HousesHouseRoute,
+  StudentsRollRoute: StudentsRollRoute,
+  HousesIndexRoute: HousesIndexRoute,
+  StudentsIndexRoute: StudentsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
