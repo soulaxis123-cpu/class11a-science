@@ -12,13 +12,17 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AchievementsRouteImport } from './routes/achievements'
+import { Route as CalendarRouteImport } from './routes/calendar'
 import { Route as ClassRouteImport } from './routes/class'
+import { Route as EventsRouteImport } from './routes/events'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as GreenCabinetRouteImport } from './routes/green-cabinet'
 import { Route as MonitorsRouteImport } from './routes/monitors'
 import { Route as ProjectsRouteImport } from './routes/projects'
+import { Route as ScienceLabRouteImport } from './routes/science-lab'
 import { Route as TeacherRouteImport } from './routes/teacher'
 import { Route as TimelineRouteImport } from './routes/timeline'
+import { Route as YearbookRouteImport } from './routes/yearbook'
 import { Route as HousesIndexRouteImport } from './routes/houses.index'
 import { Route as HousesHouseRouteImport } from './routes/houses.$house'
 import { Route as StudentsIndexRouteImport } from './routes/students.index'
@@ -39,9 +43,19 @@ const AchievementsRoute = AchievementsRouteImport.update({
   path: '/achievements',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CalendarRoute = CalendarRouteImport.update({
+  id: '/calendar',
+  path: '/calendar',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ClassRoute = ClassRouteImport.update({
   id: '/class',
   path: '/class',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsRoute = EventsRouteImport.update({
+  id: '/events',
+  path: '/events',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GalleryRoute = GalleryRouteImport.update({
@@ -64,6 +78,11 @@ const ProjectsRoute = ProjectsRouteImport.update({
   path: '/projects',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ScienceLabRoute = ScienceLabRouteImport.update({
+  id: '/science-lab',
+  path: '/science-lab',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TeacherRoute = TeacherRouteImport.update({
   id: '/teacher',
   path: '/teacher',
@@ -72,6 +91,11 @@ const TeacherRoute = TeacherRouteImport.update({
 const TimelineRoute = TimelineRouteImport.update({
   id: '/timeline',
   path: '/timeline',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const YearbookRoute = YearbookRouteImport.update({
+  id: '/yearbook',
+  path: '/yearbook',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HousesIndexRoute = HousesIndexRouteImport.update({
@@ -99,13 +123,17 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/achievements': typeof AchievementsRoute
+  '/calendar': typeof CalendarRoute
   '/class': typeof ClassRoute
+  '/events': typeof EventsRoute
   '/gallery': typeof GalleryRoute
   '/green-cabinet': typeof GreenCabinetRoute
   '/monitors': typeof MonitorsRoute
   '/projects': typeof ProjectsRoute
+  '/science-lab': typeof ScienceLabRoute
   '/teacher': typeof TeacherRoute
   '/timeline': typeof TimelineRoute
+  '/yearbook': typeof YearbookRoute
   '/houses/$house': typeof HousesHouseRoute
   '/students/$roll': typeof StudentsRollRoute
   '/houses/': typeof HousesIndexRoute
@@ -115,13 +143,17 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/achievements': typeof AchievementsRoute
+  '/calendar': typeof CalendarRoute
   '/class': typeof ClassRoute
+  '/events': typeof EventsRoute
   '/gallery': typeof GalleryRoute
   '/green-cabinet': typeof GreenCabinetRoute
   '/monitors': typeof MonitorsRoute
   '/projects': typeof ProjectsRoute
+  '/science-lab': typeof ScienceLabRoute
   '/teacher': typeof TeacherRoute
   '/timeline': typeof TimelineRoute
+  '/yearbook': typeof YearbookRoute
   '/houses/$house': typeof HousesHouseRoute
   '/students/$roll': typeof StudentsRollRoute
   '/houses': typeof HousesIndexRoute
@@ -132,13 +164,17 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/achievements': typeof AchievementsRoute
+  '/calendar': typeof CalendarRoute
   '/class': typeof ClassRoute
+  '/events': typeof EventsRoute
   '/gallery': typeof GalleryRoute
   '/green-cabinet': typeof GreenCabinetRoute
   '/monitors': typeof MonitorsRoute
   '/projects': typeof ProjectsRoute
+  '/science-lab': typeof ScienceLabRoute
   '/teacher': typeof TeacherRoute
   '/timeline': typeof TimelineRoute
+  '/yearbook': typeof YearbookRoute
   '/houses/$house': typeof HousesHouseRoute
   '/students/$roll': typeof StudentsRollRoute
   '/houses/': typeof HousesIndexRoute
@@ -150,13 +186,17 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/achievements'
+    | '/calendar'
     | '/class'
+    | '/events'
     | '/gallery'
     | '/green-cabinet'
     | '/monitors'
     | '/projects'
+    | '/science-lab'
     | '/teacher'
     | '/timeline'
+    | '/yearbook'
     | '/houses/$house'
     | '/students/$roll'
     | '/houses/'
@@ -166,13 +206,17 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/achievements'
+    | '/calendar'
     | '/class'
+    | '/events'
     | '/gallery'
     | '/green-cabinet'
     | '/monitors'
     | '/projects'
+    | '/science-lab'
     | '/teacher'
     | '/timeline'
+    | '/yearbook'
     | '/houses/$house'
     | '/students/$roll'
     | '/houses'
@@ -182,13 +226,17 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/achievements'
+    | '/calendar'
     | '/class'
+    | '/events'
     | '/gallery'
     | '/green-cabinet'
     | '/monitors'
     | '/projects'
+    | '/science-lab'
     | '/teacher'
     | '/timeline'
+    | '/yearbook'
     | '/houses/$house'
     | '/students/$roll'
     | '/houses/'
@@ -199,13 +247,17 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AchievementsRoute: typeof AchievementsRoute
+  CalendarRoute: typeof CalendarRoute
   ClassRoute: typeof ClassRoute
+  EventsRoute: typeof EventsRoute
   GalleryRoute: typeof GalleryRoute
   GreenCabinetRoute: typeof GreenCabinetRoute
   MonitorsRoute: typeof MonitorsRoute
   ProjectsRoute: typeof ProjectsRoute
+  ScienceLabRoute: typeof ScienceLabRoute
   TeacherRoute: typeof TeacherRoute
   TimelineRoute: typeof TimelineRoute
+  YearbookRoute: typeof YearbookRoute
   HousesHouseRoute: typeof HousesHouseRoute
   StudentsRollRoute: typeof StudentsRollRoute
   HousesIndexRoute: typeof HousesIndexRoute
@@ -235,11 +287,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AchievementsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/calendar': {
+      id: '/calendar'
+      path: '/calendar'
+      fullPath: '/calendar'
+      preLoaderRoute: typeof CalendarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/class': {
       id: '/class'
       path: '/class'
       fullPath: '/class'
       preLoaderRoute: typeof ClassRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events': {
+      id: '/events'
+      path: '/events'
+      fullPath: '/events'
+      preLoaderRoute: typeof EventsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/gallery': {
@@ -270,6 +336,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/science-lab': {
+      id: '/science-lab'
+      path: '/science-lab'
+      fullPath: '/science-lab'
+      preLoaderRoute: typeof ScienceLabRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/teacher': {
       id: '/teacher'
       path: '/teacher'
@@ -282,6 +355,13 @@ declare module '@tanstack/react-router' {
       path: '/timeline'
       fullPath: '/timeline'
       preLoaderRoute: typeof TimelineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/yearbook': {
+      id: '/yearbook'
+      path: '/yearbook'
+      fullPath: '/yearbook'
+      preLoaderRoute: typeof YearbookRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/houses/': {
@@ -319,13 +399,17 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AchievementsRoute: AchievementsRoute,
+  CalendarRoute: CalendarRoute,
   ClassRoute: ClassRoute,
+  EventsRoute: EventsRoute,
   GalleryRoute: GalleryRoute,
   GreenCabinetRoute: GreenCabinetRoute,
   MonitorsRoute: MonitorsRoute,
   ProjectsRoute: ProjectsRoute,
+  ScienceLabRoute: ScienceLabRoute,
   TeacherRoute: TeacherRoute,
   TimelineRoute: TimelineRoute,
+  YearbookRoute: YearbookRoute,
   HousesHouseRoute: HousesHouseRoute,
   StudentsRollRoute: StudentsRollRoute,
   HousesIndexRoute: HousesIndexRoute,
