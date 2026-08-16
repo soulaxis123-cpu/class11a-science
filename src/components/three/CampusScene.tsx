@@ -125,7 +125,7 @@ export default function CampusScene() {
             total={campusLocations.length}
             label={loc.label}
             to={loc.to}
-            glyph={loc.glyph}
+            glyph={loc.code}
           />
         ))}
       </OrbitRig>
