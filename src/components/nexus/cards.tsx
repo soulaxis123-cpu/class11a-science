@@ -57,22 +57,25 @@ export function StudentCard({ student }: { student: Student }) {
 
 export function HouseCard({ house, position }: { house: House; position?: number }) {
   const accent = `var(${house.colorVar})`;
+  const deep = `var(${house.colorVar2})`;
   return (
     <Link to="/houses/$house" params={{ house: house.id }} className="group block">
       <GlassPanel
         hover
-        className="relative h-full overflow-hidden p-6"
+        className="depth-card relative h-full overflow-hidden p-6"
         style={{ borderColor: `color-mix(in oklab, ${accent} 30%, transparent)` }}
       >
         <div
           className="absolute -right-10 -top-10 size-40 rounded-full blur-3xl transition-opacity duration-500 group-hover:opacity-90"
-          style={{ background: `color-mix(in oklab, ${accent} 30%, transparent)`, opacity: 0.5 }}
+          style={{ background: `color-mix(in oklab, ${accent} 32%, transparent)`, opacity: 0.5 }}
+        />
+        <div
+          className="absolute inset-x-0 bottom-0 h-24 opacity-40"
+          style={{ background: `linear-gradient(to top, color-mix(in oklab, ${deep} 45%, transparent), transparent)` }}
         />
         <div className="relative">
           <div className="flex items-start justify-between">
-            <span className="font-display text-4xl" style={{ color: accent }}>
-              {house.emblem}
-            </span>
+            <HouseCrest id={house.id} className="size-16" />
             {position ? (
               <span className="label-mono">Rank #{position}</span>
             ) : null}
