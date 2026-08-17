@@ -112,7 +112,7 @@ export function AchievementCard({ item }: { item: Achievement }) {
         <span className="rounded-full bg-primary/12 px-2.5 py-1 text-[0.6rem] uppercase tracking-[0.18em] text-primary">
           {item.category}
         </span>
-        <NexusIcon name="award" className="size-4 text-gold" />
+        <NexusIcon name="achievements" className="size-4 text-gold" />
       </div>
       <h3 className="mt-4 font-display text-base font-medium">
         {item.title ?? <span className="text-muted-foreground">Achievement slot</span>}
