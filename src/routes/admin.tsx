@@ -361,14 +361,17 @@ function Dashboard({ email }: { email: string }) {
 
         <div>
           {section === "overview" ? (
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {stats.map((s) => (
-                <GlassPanel key={s.label} className="p-5">
-                  <p className="label-mono">{s.label}</p>
-                  <p className="mt-2 font-display text-3xl font-semibold text-primary">{s.value}</p>
-                  <p className="text-xs text-muted-foreground">{s.note}</p>
-                </GlassPanel>
-              ))}
+            <div className="space-y-6">
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {stats.map((s) => (
+                  <GlassPanel key={s.label} className="p-5">
+                    <p className="label-mono">{s.label}</p>
+                    <p className="mt-2 font-display text-3xl font-semibold text-primary">{s.value}</p>
+                    <p className="text-xs text-muted-foreground">{s.note}</p>
+                  </GlassPanel>
+                ))}
+              </div>
+              <HouseColorPanel />
             </div>
           ) : (
             <SectionEditor
