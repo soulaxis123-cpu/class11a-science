@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import type { Achievement, GalleryItem, House, Project, Student, TimelineEntry } from "@/data/types";
 import { houseColor, getHouse } from "@/data/houses";
+import { HouseCrest } from "@/components/nexus/HouseCrest";
 import { displayName } from "@/data/students";
 import { GlassPanel, PhotoSlot, PlaceholderBadge } from "./primitives";
 
