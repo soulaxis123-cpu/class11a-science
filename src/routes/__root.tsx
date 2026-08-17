@@ -123,16 +123,31 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  // Publishes the configurable house palette to CSS variables site-wide.
+  useHouseColorSync();
 
   return (
     <QueryClientProvider client={queryClient}>
       <AmbientBackground />
       <Navigation />
-      <div key={pathname} className="animate-fade-up">
+      <RouteWarp routeKey={pathname}>
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
-      </div>
+      </RouteWarp>
       <Footer />
     </QueryClientProvider>
+  );
+}
+
+/** Short cinematic route transition: depth blur + lift, then a particle sweep. */
+function RouteWarp({ routeKey, children }: { routeKey: string; children: ReactNode }) {
+  return (
+    <div key={routeKey} className="relative">
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-x-0 top-0 z-40 h-px animate-fade-up rule-gold"
+      />
+      <div className="route-warp">{children}</div>
+    </div>
   );
 }
