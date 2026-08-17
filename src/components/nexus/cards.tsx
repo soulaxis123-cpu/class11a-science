@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import type { Achievement, GalleryItem, House, Project, Student, TimelineEntry } from "@/data/types";
 import { houseColor, getHouse } from "@/data/houses";
 import { HouseCrest } from "@/components/nexus/HouseCrest";
+import { NexusIcon } from "@/components/nexus/icons";
 import { displayName } from "@/data/students";
 import { GlassPanel, PhotoSlot, PlaceholderBadge } from "./primitives";
 
@@ -111,9 +112,7 @@ export function AchievementCard({ item }: { item: Achievement }) {
         <span className="rounded-full bg-primary/12 px-2.5 py-1 text-[0.6rem] uppercase tracking-[0.18em] text-primary">
           {item.category}
         </span>
-        <span className="text-lg" style={{ color: "var(--gold)" }}>
-          🏆
-        </span>
+        <NexusIcon name="award" className="size-4 text-gold" />
       </div>
       <h3 className="mt-4 font-display text-base font-medium">
         {item.title ?? <span className="text-muted-foreground">Achievement slot</span>}
