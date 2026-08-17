@@ -31,7 +31,7 @@ function GalleryPage() {
   return (
     <PageShell>
       <SectionHero
-        eyebrow="🖼️ Memory Museum"
+        eyebrow="Memory Museum"
         title="Our Memories"
         subtitle="Every moment worth keeping"
         description="Photographs and videos of Class 11-A will be exhibited across these halls."

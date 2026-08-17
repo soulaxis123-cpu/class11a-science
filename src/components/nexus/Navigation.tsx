@@ -42,8 +42,7 @@ export function Navigation() {
         >
           <Link to="/" className="group flex items-center gap-3">
             <span className="relative flex size-9 items-center justify-center rounded-xl border border-primary/40 bg-primary/10 font-display text-sm text-primary">
-              ⚛
-            </span>
+              </span>
             <span className="leading-none">
               <span className="block font-display text-sm font-semibold uppercase tracking-[0.18em]">
                 Class 11-A

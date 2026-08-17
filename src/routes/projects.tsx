@@ -30,7 +30,7 @@ function ProjectsPage() {
   return (
     <PageShell>
       <SectionHero
-        eyebrow="📚 Project Gallery"
+        eyebrow="Project Gallery"
         title="Our Projects"
         subtitle="Where curiosity becomes discovery"
         description="Each project of Class 11-A gets its own showcase card here."

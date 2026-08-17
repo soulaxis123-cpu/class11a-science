@@ -22,7 +22,7 @@ function EventsPage() {
   return (
     <PageShell>
       <SectionHero
-        eyebrow="🎪 Activity Log"
+        eyebrow="Activity Log"
         title="Class Events"
         subtitle="Everything that brings 11-A together"
         description="Competitions, celebrations, house activities and school events will be listed here."

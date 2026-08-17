@@ -27,7 +27,7 @@ function ScienceLabPage() {
           <Scene name="lab" className="opacity-70" />
         </div>
         <SectionHero
-          eyebrow="🧪 Virtual Laboratory"
+          eyebrow="Virtual Laboratory"
           title="Science Lab"
           subtitle="Where Curiosity Becomes Discovery"
           description="Four disciplines, one laboratory. Experiments, models and demonstrations will be added here."
