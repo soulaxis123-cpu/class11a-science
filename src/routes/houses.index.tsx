@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { houses } from "@/data/houses";
 import { GlassPanel, PageShell, Section, SectionHero } from "@/components/nexus/primitives";
 import { HouseCard } from "@/components/nexus/cards";
+import { HouseCrest } from "@/components/nexus/HouseCrest";
 import { Scene } from "@/components/three/Scene";
 
 export const Route = createFileRoute("/houses/")({
@@ -31,7 +32,7 @@ function HousesPage() {
   return (
     <PageShell>
       <SectionHero
-        eyebrow="🏛️ House Towers"
+        eyebrow="House Towers"
         title="Four Houses"
         subtitle="One Class. Four Houses. One Scientific Journey."
         description="Four towers rise from the class universe. Each holds its own members, captains, colors and story."
@@ -74,9 +75,7 @@ function HousesPage() {
                   <tr key={h.id} className="border-b border-border/50 last:border-0">
                     <td className="px-5 py-4">
                       <span className="flex items-center gap-3">
-                        <span className="text-lg" style={{ color: accent }}>
-                          {h.emblem}
-                        </span>
+                        <HouseCrest id={h.id} className="size-9" />
                         <span className="font-display font-medium">{h.name}</span>
                       </span>
                     </td>
