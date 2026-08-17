@@ -14,6 +14,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Navigation, Footer } from "@/components/nexus/Navigation";
 import { AmbientBackground } from "@/components/nexus/AmbientBackground";
+import { useHouseColorSync } from "@/lib/house-theme";
 
 function NotFoundComponent() {
   return (
