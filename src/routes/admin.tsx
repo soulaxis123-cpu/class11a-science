@@ -12,9 +12,10 @@ import {
   defaultContent,
   validateDocument,
   type ContentKey,
+  type ContentShape,
 } from "@/lib/content-store";
 import { GlassPanel } from "@/components/nexus/primitives";
-import { Logo } from "@/components/nexus/Logo";
+import { NexusLogo } from "@/components/nexus/Logo";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/admin")({
@@ -153,7 +154,7 @@ function LoginCard() {
   return (
     <GlassPanel className="mx-auto max-w-md p-8">
       <div className="flex flex-col items-center text-center">
-        <Logo className="h-10 w-auto" />
+        <NexusLogo />
         <p className="label-mono mt-5">Restricted area</p>
         <h1 className="mt-2 font-display text-2xl font-semibold">Control Room</h1>
         <p className="mt-2 text-sm text-muted-foreground">
@@ -578,7 +579,7 @@ function BulkTools({
   content,
   onSave,
 }: {
-  content: Record<string, unknown>;
+  content: ContentShape;
   onSave: (key: ContentKey, rows: unknown[]) => Promise<boolean>;
 }) {
   const [importing, setImporting] = useState(false);
