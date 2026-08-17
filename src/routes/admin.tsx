@@ -16,6 +16,9 @@ import {
 } from "@/lib/content-store";
 import { GlassPanel } from "@/components/nexus/primitives";
 import { NexusLogo } from "@/components/nexus/Logo";
+import { HouseCrest } from "@/components/nexus/HouseCrest";
+import { houses } from "@/data/houses";
+import { useHouseColors } from "@/lib/house-theme";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/admin")({
@@ -361,14 +364,17 @@ function Dashboard({ email }: { email: string }) {
 
         <div>
           {section === "overview" ? (
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {stats.map((s) => (
-                <GlassPanel key={s.label} className="p-5">
-                  <p className="label-mono">{s.label}</p>
-                  <p className="mt-2 font-display text-3xl font-semibold text-primary">{s.value}</p>
-                  <p className="text-xs text-muted-foreground">{s.note}</p>
-                </GlassPanel>
-              ))}
+            <div className="space-y-6">
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {stats.map((s) => (
+                  <GlassPanel key={s.label} className="p-5">
+                    <p className="label-mono">{s.label}</p>
+                    <p className="mt-2 font-display text-3xl font-semibold text-primary">{s.value}</p>
+                    <p className="text-xs text-muted-foreground">{s.note}</p>
+                  </GlassPanel>
+                ))}
+              </div>
+              <HouseColorPanel />
             </div>
           ) : (
             <SectionEditor
@@ -633,5 +639,76 @@ function BulkTools({
         />
       </label>
     </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* house customization — colors are data, applied site-wide            */
+/* ------------------------------------------------------------------ */
+
+function HouseColorPanel() {
+  const { map, update, reset } = useHouseColors();
+  const fields = [
+    { key: "primary" as const, label: "Primary" },
+    { key: "secondary" as const, label: "Secondary" },
+    { key: "accent" as const, label: "Accent" },
+  ];
+
+  return (
+    <GlassPanel className="p-5">
+      <div className="flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <p className="label-mono">House customization</p>
+          <h2 className="mt-1 font-display text-lg font-semibold">House colors</h2>
+          <p className="mt-1 text-xs text-muted-foreground">
+            These three tones drive every emblem, card, badge, leaderboard bar, particle and 3D tower
+            for that house. Changes apply instantly across the site.
+          </p>
+        </div>
+        <button
+          onClick={reset}
+          className="rounded-xl border border-border px-3 py-2 text-xs hover:bg-surface/60"
+        >
+          Reset to defaults
+        </button>
+      </div>
+
+      <div className="mt-5 grid gap-4 sm:grid-cols-2">
+        {houses.map((h) => (
+          <div key={h.id} className="rounded-2xl border border-border p-4">
+            <div className="flex items-center gap-3">
+              <HouseCrest id={h.id} className="size-12" animated={false} />
+              <div>
+                <p className="font-display text-sm font-medium uppercase tracking-wide">{h.name}</p>
+                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                  --house-{h.id}
+                </p>
+              </div>
+            </div>
+            <div className="mt-4 grid grid-cols-3 gap-2">
+              {fields.map((f) => (
+                <label key={f.key} className="block">
+                  <span className="block text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+                    {f.label}
+                  </span>
+                  <span className="mt-1 flex items-center gap-2">
+                    <input
+                      type="color"
+                      aria-label={`${h.name} ${f.label} color`}
+                      value={map[h.id][f.key]}
+                      onChange={(e) => update(h.id, f.key, e.target.value)}
+                      className="size-8 cursor-pointer rounded-md border border-border bg-transparent"
+                    />
+                    <span className="font-mono text-[10px] text-muted-foreground">
+                      {map[h.id][f.key]}
+                    </span>
+                  </span>
+                </label>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </GlassPanel>
   );
 }

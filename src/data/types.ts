@@ -30,11 +30,23 @@ export interface Student {
   projects: string[];
 }
 
+/** Fully configurable per-house palette (edited from the admin house customization panel). */
+export interface HouseColors {
+  primary: string;
+  secondary: string;
+  accent: string;
+}
+
 export interface House {
   id: HouseId;
   name: string;
-  /** CSS custom property holding the configurable accent color */
+  /** CSS custom property holding the configurable primary accent color */
   colorVar: string;
+  /** Companion vars for secondary / accent tones */
+  colorVar2: string;
+  colorVar3: string;
+  /** Default palette — overridable at runtime, never read directly by components */
+  colors: HouseColors;
   emblem: string;
   motto: string | null;
   teacher: string | null;

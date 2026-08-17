@@ -2,8 +2,15 @@ import { useMemo, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 
-export const CYAN = "#63d5f0";
-export const GREEN = "#5fd6a0";
+/** Instrument palette — graphite base, sage/forest light, restrained gold. */
+export const SAGE = "#9ec3ac";
+export const FOREST = "#4f8767";
+export const GOLD = "#c9a54e";
+export const SILVER = "#d8dcd6";
+export const OBSIDIAN = "#12140f";
+/** Back-compat alias for older imports. */
+export const CYAN = SAGE;
+export const GREEN = FOREST;
 
 export function NexusCanvas({
   children,
@@ -14,21 +21,23 @@ export function NexusCanvas({
   cameraPosition?: [number, number, number];
   fov?: number;
 }) {
+  const mobile = typeof window !== "undefined" && window.innerWidth < 768;
   return (
     <Canvas
-      dpr={[1, 1.6]}
-      gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
+      dpr={mobile ? [1, 1.2] : [1, 1.6]}
+      gl={{ antialias: !mobile, alpha: true, powerPreference: "high-performance" }}
       camera={{ position: cameraPosition, fov }}
     >
-      <ambientLight intensity={0.7} />
-      <directionalLight position={[4, 6, 5]} intensity={1.1} color={CYAN} />
-      <directionalLight position={[-5, -3, -4]} intensity={0.4} color="#8ea0ff" />
+      <ambientLight intensity={0.6} />
+      <directionalLight position={[4, 6, 5]} intensity={1.05} color={SILVER} />
+      <directionalLight position={[-5, -3, -4]} intensity={0.45} color={FOREST} />
+      <pointLight position={[0, 3, 4]} intensity={12} distance={18} color={GOLD} />
       {children}
     </Canvas>
   );
 }
 
-/** Soft parallax: the group leans toward the pointer. */
+/** Soft parallax: the group leans toward the pointer with easing. */
 export function PointerParallax({
   children,
   strength = 0.22,
@@ -39,10 +48,29 @@ export function PointerParallax({
   const ref = useRef<THREE.Group>(null);
   useFrame(({ pointer }) => {
     if (!ref.current) return;
-    ref.current.rotation.y += (pointer.x * strength - ref.current.rotation.y) * 0.05;
-    ref.current.rotation.x += (-pointer.y * strength - ref.current.rotation.x) * 0.05;
+    ref.current.rotation.y += (pointer.x * strength - ref.current.rotation.y) * 0.045;
+    ref.current.rotation.x += (-pointer.y * strength - ref.current.rotation.x) * 0.045;
   });
   return <group ref={ref}>{children}</group>;
+}
+
+/** Smoothly eases the camera toward a target position (cinematic transitions). */
+export function CameraRig({
+  target = [0, 0, 8],
+  lookAt = [0, 0, 0],
+  speed = 0.035,
+}: {
+  target?: [number, number, number];
+  lookAt?: [number, number, number];
+  speed?: number;
+}) {
+  const vec = useMemo(() => new THREE.Vector3(...target), [target]);
+  const look = useMemo(() => new THREE.Vector3(...lookAt), [lookAt]);
+  useFrame(({ camera }) => {
+    camera.position.lerp(vec, speed);
+    camera.lookAt(look);
+  });
+  return null;
 }
 
 export function Starfield({ count = 700, radius = 26 }: { count?: number; radius?: number }) {
@@ -61,7 +89,7 @@ export function Starfield({ count = 700, radius = 26 }: { count?: number; radius
 
   const ref = useRef<THREE.Points>(null);
   useFrame((_, delta) => {
-    if (ref.current) ref.current.rotation.y += delta * 0.012;
+    if (ref.current) ref.current.rotation.y += delta * 0.01;
   });
 
   return (
@@ -70,10 +98,71 @@ export function Starfield({ count = 700, radius = 26 }: { count?: number; radius
         <bufferAttribute attach="attributes-position" args={[points, 3]} />
       </bufferGeometry>
       <pointsMaterial
-        size={0.075}
-        color={CYAN}
+        size={0.06}
+        color={SILVER}
         transparent
-        opacity={0.7}
+        opacity={0.5}
+        sizeAttenuation
+        depthWrite={false}
+      />
+    </points>
+  );
+}
+
+/**
+ * Depth-layered molecular dust that drifts and leans with the pointer.
+ * Layer count scales down automatically on small viewports.
+ */
+export function MolecularDust({
+  layers = 3,
+  perLayer = 120,
+  color = SAGE,
+}: {
+  layers?: number;
+  perLayer?: number;
+  color?: string;
+}) {
+  const { size } = useThree();
+  const scaled = size.width < 768 ? Math.max(1, layers - 1) : layers;
+  return (
+    <>
+      {Array.from({ length: scaled }, (_, i) => (
+        <DustLayer key={i} depth={i + 1} count={perLayer} color={color} />
+      ))}
+    </>
+  );
+}
+
+function DustLayer({ depth, count, color }: { depth: number; count: number; color: string }) {
+  const ref = useRef<THREE.Points>(null);
+  const positions = useMemo(() => {
+    const arr = new Float32Array(count * 3);
+    for (let i = 0; i < count; i++) {
+      arr[i * 3] = (Math.random() - 0.5) * 18;
+      arr[i * 3 + 1] = (Math.random() - 0.5) * 11;
+      arr[i * 3 + 2] = -depth * 2.4 - Math.random() * 2;
+    }
+    return arr;
+  }, [count, depth]);
+
+  useFrame(({ pointer, clock }) => {
+    if (!ref.current) return;
+    const k = 0.22 / depth;
+    ref.current.position.x += (pointer.x * k * 3 - ref.current.position.x) * 0.03;
+    ref.current.position.y += (-pointer.y * k * 2 - ref.current.position.y) * 0.03;
+    ref.current.rotation.z = Math.sin(clock.elapsedTime * 0.04 * depth) * 0.05;
+  });
+
+  return (
+    <points ref={ref}>
+      <bufferGeometry>
+        <bufferAttribute attach="attributes-position" args={[positions, 3]} />
+      </bufferGeometry>
+      <pointsMaterial
+        size={0.09 / depth + 0.03}
+        color={color}
+        transparent
+        opacity={0.5 / depth + 0.12}
         sizeAttenuation
         depthWrite={false}
       />
@@ -85,7 +174,7 @@ export function Starfield({ count = 700, radius = 26 }: { count?: number; radius
 export function ScienceGrid({ y = -3.2 }: { y?: number }) {
   return (
     <gridHelper
-      args={[60, 60, new THREE.Color(CYAN), new THREE.Color("#2a3a55")]}
+      args={[60, 60, new THREE.Color(SAGE), new THREE.Color("#2b302a")]}
       position={[0, y, 0]}
     />
   );

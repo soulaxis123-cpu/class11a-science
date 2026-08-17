@@ -24,7 +24,7 @@ export const Route = createFileRoute("/about")({
 function AboutPage() {
   return (
     <PageShell>
-      <SectionHero eyebrow="💠 Website Creator" title="Created By" subtitle="Asadullah" />
+      <SectionHero eyebrow="Website Creator" title="Created By" subtitle="Asadullah" />
 
       <Section>
         <GlassPanel className="mx-auto max-w-2xl px-8 py-12 text-center">

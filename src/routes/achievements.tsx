@@ -28,7 +28,7 @@ function AchievementsPage() {
   return (
     <PageShell>
       <SectionHero
-        eyebrow="🏆 Hall of Fame"
+        eyebrow="Hall of Fame"
         title="Achievements"
         subtitle="Every milestone of Class 11-A, preserved"
         description="Trophies, medals and certificates take their place here as they are earned."

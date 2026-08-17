@@ -31,7 +31,7 @@ function ClassPage() {
           <Scene name="hero" className="opacity-40" />
         </div>
         <SectionHero
-          eyebrow="🏫 Classroom"
+          eyebrow="Classroom"
           title="Our Class"
           subtitle={classInfo.primaryConcept}
           description="One classroom, thirty-three minds, four houses and a single scientific journey. This is the core of the Science Nexus."
@@ -61,13 +61,13 @@ function ClassPage() {
 
       <Section title="The People">
         <div className="grid gap-4 md:grid-cols-3">
-          <LinkPanel to="/teacher" label="Class Teacher" value={teacher.name} glyph="👩‍🏫" />
-          <LinkPanel to="/students" label="Students" value="33 individual profiles" glyph="👨‍🎓" />
+          <LinkPanel to="/teacher" label="Class Teacher" value={teacher.name} glyph="·" />
+          <LinkPanel to="/students" label="Students" value="33 individual profiles" glyph="·" />
           <LinkPanel
             to="/monitors"
             label="Leadership"
             value={monitors.map((m) => m.name).join(" · ")}
-            glyph="👑"
+            glyph="·"
           />
         </div>
       </Section>

@@ -23,7 +23,7 @@ function TimelinePage() {
   return (
     <PageShell>
       <SectionHero
-        eyebrow="🕐 Time Tunnel"
+        eyebrow="Time Tunnel"
         title="Our Journey"
         subtitle="From the first day to countless memories"
         description="Every chapter of the Class 11-A session will be recorded along this tunnel."

@@ -14,6 +14,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Navigation, Footer } from "@/components/nexus/Navigation";
 import { AmbientBackground } from "@/components/nexus/AmbientBackground";
+import { useHouseColorSync } from "@/lib/house-theme";
 
 function NotFoundComponent() {
   return (
@@ -95,7 +96,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap",
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
@@ -123,16 +124,31 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  // Publishes the configurable house palette to CSS variables site-wide.
+  useHouseColorSync();
 
   return (
     <QueryClientProvider client={queryClient}>
       <AmbientBackground />
       <Navigation />
-      <div key={pathname} className="animate-fade-up">
+      <RouteWarp routeKey={pathname}>
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
-      </div>
+      </RouteWarp>
       <Footer />
     </QueryClientProvider>
+  );
+}
+
+/** Short cinematic route transition: depth blur + lift, then a particle sweep. */
+function RouteWarp({ routeKey, children }: { routeKey: string; children: ReactNode }) {
+  return (
+    <div key={routeKey} className="relative">
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-x-0 top-0 z-40 h-px animate-fade-up rule-gold"
+      />
+      <div className="route-warp">{children}</div>
+    </div>
   );
 }

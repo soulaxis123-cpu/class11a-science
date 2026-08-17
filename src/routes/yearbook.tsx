@@ -25,7 +25,7 @@ function YearbookPage() {
   return (
     <PageShell>
       <SectionHero
-        eyebrow="📖 Yearbook Vault"
+        eyebrow="Yearbook Vault"
         title="Digital Yearbook"
         subtitle={classInfo.tertiaryConcept}
         description="Everything about Class 11-A Science, gathered into one memory vault."

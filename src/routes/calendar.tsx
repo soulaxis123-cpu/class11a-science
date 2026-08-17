@@ -24,7 +24,7 @@ function CalendarPage() {
   return (
     <PageShell>
       <SectionHero
-        eyebrow="📅 Activity Center"
+        eyebrow="Activity Center"
         title="Class Calendar"
         subtitle="Every important date in one orbit"
         description="Exams, tests, projects, competitions, birthdays and events for Class 11-A."

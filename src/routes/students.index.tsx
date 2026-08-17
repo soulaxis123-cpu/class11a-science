@@ -63,7 +63,7 @@ function StudentsPage() {
   return (
     <PageShell>
       <SectionHero
-        eyebrow="👨‍🎓 Student Hub"
+        eyebrow="Student Hub"
         title="Our 33 Students"
         subtitle="33 Students. 4 Houses. 1 Class."
         description="Every classmate has a permanent place here. Names, photos and houses appear as soon as they are provided."

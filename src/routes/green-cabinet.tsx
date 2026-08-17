@@ -40,7 +40,7 @@ function GreenCabinetPage() {
           <Scene name="green" className="opacity-70" />
         </div>
         <SectionHero
-          eyebrow="🌱 Green Zone"
+          eyebrow="Green Zone"
           title="Green Cabinet"
           subtitle="Guardians of a Cleaner Classroom and a Greener Future"
           description="Twelve students of Class 11-A Science who keep our classroom clean, organized and environmentally responsible."
@@ -87,7 +87,7 @@ function GreenCabinetPage() {
               <div className="relative aspect-[4/5]">
                 <PhotoSlot src={null} alt={m.name ?? `Member ${m.slot}`} accent="var(--eco)" />
                 <span className="absolute left-3 top-3 rounded-lg border border-white/15 bg-black/55 px-2 py-1 font-mono text-[0.6rem] tracking-[0.16em] text-white/90 backdrop-blur-md">
-                  🌱 {String(m.slot).padStart(2, "0")}
+                  {String(m.slot).padStart(2, "0")}
                 </span>
               </div>
               <div className="p-4">

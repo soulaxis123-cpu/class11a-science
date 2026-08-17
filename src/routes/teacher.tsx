@@ -33,7 +33,7 @@ function TeacherPage() {
   return (
     <PageShell>
       <SectionHero
-        eyebrow="👩‍🏫 Teacher's Chamber"
+        eyebrow="Teacher's Chamber"
         title="Our Class Teacher"
         subtitle={teacher.name}
         description="An academic space dedicated to the teacher who guides Class 11-A Science."

@@ -26,7 +26,7 @@ function MonitorsPage() {
   return (
     <PageShell>
       <SectionHero
-        eyebrow="👑 Leadership"
+        eyebrow="Leadership"
         title="Class Leadership"
         subtitle="Guiding the day-to-day life of 11-A"
         description="Our monitors coordinate the class, support the teacher and keep the class running smoothly."
