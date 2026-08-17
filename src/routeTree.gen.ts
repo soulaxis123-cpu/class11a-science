@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AchievementsRouteImport } from './routes/achievements'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as CalendarRouteImport } from './routes/calendar'
 import { Route as ClassRouteImport } from './routes/class'
 import { Route as EventsRouteImport } from './routes/events'
@@ -41,6 +42,11 @@ const AboutRoute = AboutRouteImport.update({
 const AchievementsRoute = AchievementsRouteImport.update({
   id: '/achievements',
   path: '/achievements',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CalendarRoute = CalendarRouteImport.update({
@@ -123,6 +129,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/achievements': typeof AchievementsRoute
+  '/admin': typeof AdminRoute
   '/calendar': typeof CalendarRoute
   '/class': typeof ClassRoute
   '/events': typeof EventsRoute
@@ -143,6 +150,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/achievements': typeof AchievementsRoute
+  '/admin': typeof AdminRoute
   '/calendar': typeof CalendarRoute
   '/class': typeof ClassRoute
   '/events': typeof EventsRoute
@@ -164,6 +172,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/achievements': typeof AchievementsRoute
+  '/admin': typeof AdminRoute
   '/calendar': typeof CalendarRoute
   '/class': typeof ClassRoute
   '/events': typeof EventsRoute
@@ -186,6 +195,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/achievements'
+    | '/admin'
     | '/calendar'
     | '/class'
     | '/events'
@@ -206,6 +216,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/achievements'
+    | '/admin'
     | '/calendar'
     | '/class'
     | '/events'
@@ -226,6 +237,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/achievements'
+    | '/admin'
     | '/calendar'
     | '/class'
     | '/events'
@@ -247,6 +259,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AchievementsRoute: typeof AchievementsRoute
+  AdminRoute: typeof AdminRoute
   CalendarRoute: typeof CalendarRoute
   ClassRoute: typeof ClassRoute
   EventsRoute: typeof EventsRoute
@@ -285,6 +298,13 @@ declare module '@tanstack/react-router' {
       path: '/achievements'
       fullPath: '/achievements'
       preLoaderRoute: typeof AchievementsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/calendar': {
@@ -399,6 +419,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AchievementsRoute: AchievementsRoute,
+  AdminRoute: AdminRoute,
   CalendarRoute: CalendarRoute,
   ClassRoute: ClassRoute,
   EventsRoute: EventsRoute,
