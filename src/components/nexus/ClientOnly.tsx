@@ -13,14 +13,20 @@ export function ClientOnly({
   return <>{mounted ? children : fallback}</>;
 }
 
-/** Coarse capability check: skip heavy 3D on small / low-power / reduced-motion devices. */
+/**
+ * Coarse capability check: only skip heavy 3D when the user asked for reduced
+ * motion or the device is genuinely tiny/low-memory. Core count is NOT used —
+ * ordinary 4-core laptops render these scenes fine.
+ */
 export function useLightMode() {
   const [light, setLight] = useState(false);
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const small = window.matchMedia("(max-width: 767px)").matches;
-    const cores = navigator.hardwareConcurrency ?? 8;
-    setLight(reduce || small || cores <= 4);
+    const tiny = window.matchMedia("(max-width: 420px)").matches;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const memory = (navigator as any).deviceMemory as number | undefined;
+    setLight(reduce || tiny || (memory !== undefined && memory <= 1));
   }, []);
   return light;
 }
+

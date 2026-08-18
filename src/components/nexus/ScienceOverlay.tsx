@@ -205,13 +205,14 @@ export function ParticleField({ className }: { className?: string }) {
     const pointer = { x: -9999, y: -9999 };
 
     function build() {
-      w = canvas!.clientWidth;
-      h = canvas!.clientHeight;
-      canvas!.width = w * dpr;
-      canvas!.height = h * dpr;
+      // clientWidth can be 0 on the very first frame — fall back to the viewport
+      w = canvas!.clientWidth || window.innerWidth;
+      h = canvas!.clientHeight || window.innerHeight;
+      canvas!.width = Math.max(1, Math.round(w * dpr));
+      canvas!.height = Math.max(1, Math.round(h * dpr));
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
       const density = w < 768 ? 14000 : 9000;
-      const count = Math.min(120, Math.round((w * h) / density));
+      const count = Math.min(140, Math.max(40, Math.round((w * h) / density)));
       particles = Array.from({ length: count }, () => {
         const layer = Math.floor(Math.random() * 3) + 1;
         return {
@@ -227,6 +228,8 @@ export function ParticleField({ className }: { className?: string }) {
 
     build();
     const onResize = () => build();
+    const observer = new ResizeObserver(() => build());
+    observer.observe(canvas);
     const onMove = (e: PointerEvent) => {
       const rect = canvas.getBoundingClientRect();
       pointer.x = e.clientX - rect.left;
@@ -234,6 +237,7 @@ export function ParticleField({ className }: { className?: string }) {
     };
     window.addEventListener("resize", onResize);
     window.addEventListener("pointermove", onMove, { passive: true });
+
 
     let frame = 0;
     const render = () => {
@@ -292,9 +296,11 @@ export function ParticleField({ className }: { className?: string }) {
 
     return () => {
       cancelAnimationFrame(frame);
+      observer.disconnect();
       window.removeEventListener("resize", onResize);
       window.removeEventListener("pointermove", onMove);
     };
+
   }, [reduced]);
 
   if (reduced) return null;
