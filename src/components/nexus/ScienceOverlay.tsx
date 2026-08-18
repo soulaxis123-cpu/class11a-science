@@ -296,9 +296,11 @@ export function ParticleField({ className }: { className?: string }) {
 
     return () => {
       cancelAnimationFrame(frame);
+      observer.disconnect();
       window.removeEventListener("resize", onResize);
       window.removeEventListener("pointermove", onMove);
     };
+
   }, [reduced]);
 
   if (reduced) return null;
