@@ -28,6 +28,7 @@ import { Route as HousesIndexRouteImport } from './routes/houses.index'
 import { Route as HousesHouseRouteImport } from './routes/houses.$house'
 import { Route as StudentsIndexRouteImport } from './routes/students.index'
 import { Route as StudentsRollRouteImport } from './routes/students.$roll'
+import { Route as ApiPublicMediaSplatRouteImport } from './routes/api/public/media.$'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -124,6 +125,11 @@ const StudentsRollRoute = StudentsRollRouteImport.update({
   path: '/students/$roll',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicMediaSplatRoute = ApiPublicMediaSplatRouteImport.update({
+  id: '/api/public/media/$',
+  path: '/api/public/media/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -145,6 +151,7 @@ export interface FileRoutesByFullPath {
   '/students/$roll': typeof StudentsRollRoute
   '/houses/': typeof HousesIndexRoute
   '/students/': typeof StudentsIndexRoute
+  '/api/public/media/$': typeof ApiPublicMediaSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -166,6 +173,7 @@ export interface FileRoutesByTo {
   '/students/$roll': typeof StudentsRollRoute
   '/houses': typeof HousesIndexRoute
   '/students': typeof StudentsIndexRoute
+  '/api/public/media/$': typeof ApiPublicMediaSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -188,6 +196,7 @@ export interface FileRoutesById {
   '/students/$roll': typeof StudentsRollRoute
   '/houses/': typeof HousesIndexRoute
   '/students/': typeof StudentsIndexRoute
+  '/api/public/media/$': typeof ApiPublicMediaSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -211,6 +220,7 @@ export interface FileRouteTypes {
     | '/students/$roll'
     | '/houses/'
     | '/students/'
+    | '/api/public/media/$'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -232,6 +242,7 @@ export interface FileRouteTypes {
     | '/students/$roll'
     | '/houses'
     | '/students'
+    | '/api/public/media/$'
   id:
     | '__root__'
     | '/'
@@ -253,6 +264,7 @@ export interface FileRouteTypes {
     | '/students/$roll'
     | '/houses/'
     | '/students/'
+    | '/api/public/media/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -275,6 +287,7 @@ export interface RootRouteChildren {
   StudentsRollRoute: typeof StudentsRollRoute
   HousesIndexRoute: typeof HousesIndexRoute
   StudentsIndexRoute: typeof StudentsIndexRoute
+  ApiPublicMediaSplatRoute: typeof ApiPublicMediaSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -412,6 +425,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudentsRollRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/media/$': {
+      id: '/api/public/media/$'
+      path: '/api/public/media/$'
+      fullPath: '/api/public/media/$'
+      preLoaderRoute: typeof ApiPublicMediaSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -435,6 +455,7 @@ const rootRouteChildren: RootRouteChildren = {
   StudentsRollRoute: StudentsRollRoute,
   HousesIndexRoute: HousesIndexRoute,
   StudentsIndexRoute: StudentsIndexRoute,
+  ApiPublicMediaSplatRoute: ApiPublicMediaSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
